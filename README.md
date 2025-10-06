@@ -1,3 +1,14 @@
+# LINK->>>>>> [aqui](https://tarot-jogo.vercel.app/) 
+
+Feito com [React](https://react.dev/) e o depploy com [Vercel](https://vercel.com/) por [Esther Vieira Rodrigues](https://portfilio-topaz-one.vercel.app/).
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
