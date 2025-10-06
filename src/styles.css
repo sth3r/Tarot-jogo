@@ -1,0 +1,113 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at center, #1e1035 0%, #0c041b 100%);
+  color: #f5f3f7;
+  font-family: "Cinzel", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #e7d5ff;
+}
+
+.spread-selector {
+  margin-top: 8px;
+}
+
+.spread-selector select,
+.spread-selector button {
+  background: #2b1747;
+  color: #fff;
+  border: 1px solid #8b5cf6;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.spread-selector button:hover {
+  background: #3a1c6a;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  gap: 20px;
+}
+
+.deck {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(10deg);
+}
+
+.card {
+  width: 80px;
+  height: 130px;
+  background: linear-gradient(145deg, #3e2a63, #1d0d34);
+  border: 2px solid #c7a8ff;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center -150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+
+.card.hidden {
+  opacity: 0;
+}
+
+.card.revealed {
+  color: #fff;
+  background: linear-gradient(145deg, #7c52a1, #3a1c6a);
+  border-color: #e2caff;
+  position: relative;
+  transform: none;
+  margin: 10px;
+}
+
+.card.reversed {
+  transform: rotate(180deg);
+}
+
+.spread-area {
+  width: 50%;
+  height: 80%;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  padding: 10px;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarot Spread</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Leitura de Cartas</h1>
+      <div class="spread-selector">
+        <label for="deckType">Tipo de Baralho:</label>
+        <select id="deckType">
+          <option value="tarot">Tarot</option>
+          <option value="cigano">Baralho Cigano</option>
+          <option value="outros">Outros</option>
+        </select>
+        <button id="shuffleButton">🔮 Embaralhar</button>
+        <button id="clearButton">🧹 Limpar</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="deck" class="deck"></div>
+      <div id="spread-area" class="spread-area"></div>
+    </main>
+  </div>
+
+  <script>
+    const deckEl = document.getElementById("deck");
+    const spreadEl = document.getElementById("spread-area");
+    const shuffleBtn = document.getElementById("shuffleButton");
+    const clearBtn = document.getElementById("clearButton");
+    const deckTypeSelect = document.getElementById("deckType");
+
+    let currentDeck = [];
+
+    // Simulação de baralhos
+    const decks = {
+      tarot: Array.from({ length: 22 }, (_, i) => `Tarot ${i + 1}`),
+      cigano: Array.from({ length: 36 }, (_, i) => `Cigano ${i + 1}`),
+      outros: Array.from({ length: 10 }, (_, i) => `Outro ${i + 1}`)
+    };
+
+    function createDeck(deckType) {
+      deckEl.innerHTML = "";
+      currentDeck = decks[deckType].map(card => ({
+        name: card,
+        reversed: Math.random() < 0.5
+      }));
+
+      const total = currentDeck.length;
+      const angleStep = 200 / (total - 1);
+      const startAngle = -100;
+
+      currentDeck.forEach((card, i) => {
+        const angle = startAngle + i * angleStep;
+        const cardEl = document.createElement("div");
+        cardEl.classList.add("card");
+        cardEl.textContent = "?";
+        cardEl.style.transform = `rotate(${angle}deg) translateY(-150px) rotate(${-angle}deg)`;
+        cardEl.draggable = true;
+
+        cardEl.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData("text/plain", JSON.stringify(card));
+          setTimeout(() => cardEl.classList.add("hidden"), 0);
+        });
+
+        deckEl.appendChild(cardEl);
+      });
+    }
+
+    // Embaralhar
+    shuffleBtn.addEventListener("click", () => {
+      createDeck(deckTypeSelect.value);
+    });
+
+    // Limpar spread
+    clearBtn.addEventListener("click", () => {
+      spreadEl.innerHTML = "";
+      deckEl.innerHTML = "";
+    });
+
+    // Trocar baralho
+    deckTypeSelect.addEventListener("change", () => {
+      createDeck(deckTypeSelect.value);
+    });
+
+    // Área de drop
+    spreadEl.addEventListener("dragover", (e) => e.preventDefault());
+    spreadEl.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const data = JSON.parse(e.dataTransfer.getData("text/plain"));
+      const droppedCard = document.createElement("div");
+      droppedCard.classList.add("card", "revealed");
+      droppedCard.textContent = data.name + (data.reversed ? " (Reversa)" : "");
+      if (data.reversed) droppedCard.classList.add("reversed");
+      spreadEl.appendChild(droppedCard);
+    });
+
+    // Inicializa com o tarot
+    createDeck("tarot");
+  </script>
+</body>
+</html>
