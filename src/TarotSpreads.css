@@ -368,3 +368,24 @@ body, html {
 .tarot-footer a:hover {
   color: #fbc02d;
 }
+
+@media (max-width: 768px) {
+  .card-item {
+    transition: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .card-item:hover {
+    transform: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+
+  .drop-zone {
+    transform: none !important;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

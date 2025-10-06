@@ -1,6 +1,12 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { tarotCardsData } from './data/tarotMeanings';
 import "./TarotSpreads.css";
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { isMobile } from 'react-device-detect';
+
+
 
 interface Card {
   id: number;
@@ -87,6 +93,7 @@ const TarotSpreads: React.FC = () => {
   const closeCardModal = () => setModalCard(null);
 
   return (
+    <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
     <div className="tarot-container">
       <div className="tarot-content">
 
@@ -223,7 +230,9 @@ const TarotSpreads: React.FC = () => {
 </footer>
 
     </div>
+    </DndProvider>
   );
 };
+
 
 export default TarotSpreads;
