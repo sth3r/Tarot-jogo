@@ -211,18 +211,11 @@ const TarotSpreads: React.FC = () => {
         })()}
 
         <footer className="tarot-footer">
+          &copy; 2025 Tarot Spreads - Todos os direitos reservados
           <p>
-            Desenvolvido por Esther Rodrigues |{" "}
-            <a href="mailto:vrodrigues.esther@gmai.com">
-              vrodrigues.esther@gmai.com
-            </a>{" "}
-            |{" "}
-            <a
-              href="https://www.linkedin.com/in/esther-rodrigues/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
+            Desenvolvido por {" "}
+            <a href="https://portfilio-topaz-one.vercel.app/" target="_blank" rel="noopener noreferrer">
+             Esther Rodrigues
             </a>
           </p>
         </footer>
